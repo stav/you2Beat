@@ -1,0 +1,81 @@
+README
+
+You Tube Downloader
+
+Installation
+------------
+
+(clone this directory and step inside)
+$ pip install -r requirements.txt
+$ mkdir aoudio
+
+Use Case
+--------
+
+Download all the Billboard number one hits from every year going back to 1965:
+
+$ scrapy crawl wikipedia -a no=1 -a byear=1965 -a eyear=2017
+
+The resulting directory structure might then look like:
+
+.
+├── [drwxrwxr-x stav     stav     4.0K]  audio
+│   ├── [-rw-rw-r-- stav     stav     3.1M]  1965 Sam the Sham the Pharaos  -  Wooly Bully.webm
+│   ├── [-rw-rw-r-- stav     stav     2.7M]  1966 Ballad of the Green Berets - [HD] - - - SSGT Barry SADLER.webm
+│   ├── [-rw-rw-r-- stav     stav     2.6M]  1967 LuLu (To Sir With Love).webm
+│   ├── [-rw-rw-r-- stav     stav     5.9M]  1968 The Beatles - Hey Jude.webm
+│   ├── [-rw-rw-r-- stav     stav     2.7M]  1969 The Archies - Sugar, Sugar (Original 1969 Music Video).webm
+│   ├── [-rw-rw-r-- stav     stav     4.5M]  1970 Simon and Garfunkel - Bridge Over Troubled Water.webm
+│   ├── [-rw-rw-r-- stav     stav     2.0M]  1971 Three Dog Night   Joy To The World.webm
+│   ├── [-rw-rw-r-- stav     stav     4.9M]  1972 Roberta Flack  The First Time Ever I Saw Your Face '69.webm
+│   ├── [-rw-rw-r-- stav     stav     3.1M]  1973 Tony Orlando & Dawn ~ Tie a Yellow Ribbon Round the Ole Oak Tree.webm
+│   ├── [-rw-rw-r-- stav     stav     3.2M]  1975 Captain & Tennille - Love Will Keep Us Together.m4a
+│   ├── [-rw-rw-r-- stav     stav     5.0M]  1976 SILLY LOVE SONGS   Paul McCartney  Wings   1976 HQ].webm
+│   ├── [-rw-rw-r-- stav     stav     3.7M]  1977 Rod Stewart - Tonight's The Night [Gonna Be Alright].webm
+│   ├── [-rw-rw-r-- stav     stav     4.2M]  1978 Andy Gibb   Shadow Dancing.m4a
+│   ├── [-rw-rw-r-- stav     stav     4.5M]  1979 The Knack - My Sharona (1979).webm
+│   ├── [-rw-rw-r-- stav     stav     3.3M]  1980 Blondie- Call me.webm
+│   ├── [-rw-rw-r-- stav     stav     3.4M]  1981 Kim Carnes - Bette Davis Eyes.webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  1982 Olivia Newton-John - Physical.webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  1983 The Police - Every Breath You Take.webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  1984 Prince - When Doves Cry w_lyrics.webm
+│   ├── [-rw-rw-r-- stav     stav     6.3M]  1985 Careless Whisper - WHAM.webm
+│   ├── [-rw-rw-r-- stav     stav     4.5M]  1986 Dionne Warwick - That's What Friends Are For.webm
+│   ├── [-rw-rw-r-- stav     stav     3.2M]  1987 The Bangles - Walk Like an Egyptian.webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  1988 George Michael - Faith (US Version).webm
+│   ├── [-rw-rw-r-- stav     stav     4.2M]  1989 Chicago - "Look Away" (Official Music Video).webm
+│   ├── [-rw-rw-r-- stav     stav     3.5M]  1990 Wilson Phillips - Hold On.webm
+│   ├── [-rw-rw-r-- stav     stav     4.0M]  1991 Bryan Adams - (Everything I Do) I Do It For You.webm
+│   ├── [-rw-rw-r-- stav     stav     4.0M]  1992 Boyz II Men - End Of The Road.webm
+│   ├── [-rw-rw-r-- stav     stav     4.5M]  1993 Whitney Houston - I Will Always Love You.webm
+│   ├── [-rw-rw-r-- stav     stav     3.0M]  1994 Ace of Base - The Sign (Official Music Video).webm
+│   ├── [-rw-rw-r-- stav     stav     3.5M]  1995 Coolio ft. L.V - Gangsta's Paradise (Official Music Video).webm
+│   ├── [-rw-rw-r-- stav     stav     3.4M]  1996 Los del Río  "Macarena".webm
+│   ├── [-rw-rw-r-- stav     stav     3.8M]  1997 Elton John - Something About The Way You Look Tonight.webm
+│   ├── [-rw-rw-r-- stav     stav     4.4M]  1998 Next - Too Close.webm
+│   ├── [-rw-rw-r-- stav     stav     3.8M]  1999 Cher - Believe (Offical Music Video) HD-Quality.webm
+│   ├── [-rw-rw-r-- stav     stav     4.1M]  2000 Faith Hill - "Breathe" (Official Video).webm
+│   ├── [-rw-rw-r-- stav     stav     3.2M]  2001 Lifehouse-Hanging By A Moment (lyrics).webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  2002 Nickelback - How You Remind Me [LYRICS+MP3 DOWNLOAD].webm
+│   ├── [-rw-rw-r-- stav     stav     3.9M]  2003 50 Cent - In Da Club (Int'l Version).webm
+│   ├── [-rw-rw-r-- stav     stav     4.1M]  2004 Usher - Yeah! ft. Lil Jon, Ludacris.webm
+│   ├── [-rw-rw-r-- stav     stav     3.4M]  2005 Mariah Carey - We Belong Together.webm
+│   ├── [-rw-rw-r-- stav     stav     3.5M]  2006 Daniel Powter - Bad Day (Official Music Video).webm
+│   ├── [-rw-rw-r-- stav     stav     4.1M]  2007 Beyoncé - Irreplaceable.webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  2008 Flo Rida ft. T-Pain - Low  *LYRICS*.webm
+│   ├── [-rw-rw-r-- stav     stav     3.5M]  2009 The Black Eyed Peas - Boom Boom Pow.webm
+│   ├── [-rw-rw-r-- stav     stav     3.4M]  2010 Ke$ha - TiK ToK.webm
+│   ├── [-rw-rw-r-- stav     stav     3.6M]  2011 Adele - Rolling in the Deep.webm
+│   ├── [-rw-rw-r-- stav     stav     3.9M]  2012 Gotye - Somebody That I Used To Know (feat. Kimbra) - official video.webm
+│   ├── [-rw-rw-r-- stav     stav     3.9M]  2013 MACKLEMORE & RYAN LEWIS - THRIFT SHOP FEAT. WANZ (OFFICIAL VIDEO).webm
+│   ├── [-rw-rw-r-- stav     stav     3.9M]  2014 Pharrell Williams - Happy (Official Music Video).webm
+│   ├── [-rw-rw-r-- stav     stav     4.1M]  2015 Mark Ronson - Uptown Funk ft. Bruno Mars.m4a
+│   └── [-rw-rw-r-- stav     stav     3.8M]  2016 Justin Bieber - Love Yourself  (PURPOSE : The Movement).webm
+├── [drwxrwxr-x stav     stav     4.0K]  crawler
+│   ├── [-rw-rw-r-- stav     stav        0]  __init__.py
+│   ├── [-rw-rw-r-- stav     stav     3.2K]  settings.py
+│   └── [drwxrwxr-x stav     stav     4.0K]  spiders
+│       ├── [-rw-rw-r-- stav     stav      161]  __init__.py
+│       └── [-rw-rw-r-- stav     stav     1.6K]  wikipedia.py
+├── [-rw-rw-r-- stav     stav     2.4K]  feed.csv
+└── [-rw-rw-r-- stav     stav      259]  scrapy.cfg

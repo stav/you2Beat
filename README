@@ -7,14 +7,14 @@ Installation
 
 (clone this directory and step inside)
 $ pip install -r requirements.txt
-$ mkdir aoudio
+$ mkdir audio
 
-Use Case
---------
+Use Case 1
+----------
 
 Download all the Billboard number one hits from every year going back to 1965:
 
-$ scrapy crawl wikipedia -a no=1 -a byear=1965 -a eyear=2017
+$ scrapy crawl wikipedia  -a no=1  -a byear=1965  -a eyear=2017
 
 The resulting directory structure might then look like:
 
@@ -79,3 +79,24 @@ The resulting directory structure might then look like:
 │       └── [-rw-rw-r-- stav     stav     1.6K]  wikipedia.py
 ├── [-rw-rw-r-- stav     stav     2.4K]  feed.csv
 └── [-rw-rw-r-- stav     stav      259]  scrapy.cfg
+
+Use Case 2
+----------
+
+Download all videos from first page of YouTube channel
+
+$ scrapy crawl u2b-channel  -a channel=UCse9F5zX--t-hpiUooNegZA
+
+The resulting directory structure might then look like:
+
+audio/
+├── BREAKDOWN of the Mandela Effect, M M Formula, Terms, 15 Categories {8}.webm
+├── Guidelines for Decoding the Mandela Effect (3).webm
+├── How the Film LUCY (2014) Predicts the Mandela Effect {6}.webm
+├── Mandela Effect Decoded : Invitation to Mythophrenia - Following this investigation (4).webm
+├── Mandela Effect Decoded  - Why a Gnostic Investigation? (2).m4a
+├── Mandela Effect Entrance Exam  - Testing your PSYQ.webm
+├── PSYQ Exam Results {One} - Mandela Effect Versus Traumatic Mind Control {7}.m4a
+├── PSYQ Exam Results {Two} Does the Mandela Effect Show Intelligent Purpose? {9}.webm
+├── The Mandela Effect Shows You That You Are in a Divine Experiment (5).webm
+└── The Naming of the Mandela Effect Is Not By Chance  (10).m4a

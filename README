@@ -83,20 +83,37 @@ The resulting directory structure might then look like:
 Use Case 2
 ----------
 
-Download all videos from first page of YouTube channel
+Download all videos as audio only from first page of YouTube channel
 
-$ scrapy crawl u2b-channel  -a channel=UCse9F5zX--t-hpiUooNegZA
+$ scrapy crawl u2b  -a channel=UCse9F5zX--t-hpiUooNegZA
 
 The resulting directory structure might then look like:
 
 audio/
-├── BREAKDOWN of the Mandela Effect, M M Formula, Terms, 15 Categories {8}.webm
-├── Guidelines for Decoding the Mandela Effect (3).webm
-├── How the Film LUCY (2014) Predicts the Mandela Effect {6}.webm
-├── Mandela Effect Decoded : Invitation to Mythophrenia - Following this investigation (4).webm
-├── Mandela Effect Decoded  - Why a Gnostic Investigation? (2).m4a
-├── Mandela Effect Entrance Exam  - Testing your PSYQ.webm
+├── BREAKDOWN of the Mandela Effect, M M Formula, Terms, 15 Categories {8}.m4a
+├── Guidelines for Decoding the Mandela Effect (3).m4a
+├── How the Film LUCY (2014) Predicts the Mandela Effect {6}.m4a
+├── Mandela Effect Decoded : Invitation to Mythophrenia - Following this investigation (4).m4a
+├── Mandela Effect Decoded - Why a Gnostic Investigation? (2).m4a
+├── Mandela Effect Entrance Exam - Testing your PSYQ.m4a
 ├── PSYQ Exam Results {One} - Mandela Effect Versus Traumatic Mind Control {7}.m4a
-├── PSYQ Exam Results {Two} Does the Mandela Effect Show Intelligent Purpose? {9}.webm
-├── The Mandela Effect Shows You That You Are in a Divine Experiment (5).webm
-└── The Naming of the Mandela Effect Is Not By Chance  (10).m4a
+├── PSYQ Exam Results {Two} Does the Mandela Effect Show Intelligent Purpose? {9}.m4a
+├── The Mandela Effect Shows You That You Are in a Divine Experiment (5).m4a
+└── The Naming of the Mandela Effect Is Not By Chance (10).m4a
+
+Use Case 3
+----------
+
+Download all videos as audio only from first page of YouTube user
+
+$ scrapy crawl u2b  -a user=TerenceMcKennaTube
+
+The resulting directory structure might then look like:
+
+audio/
+├── Exploring The Hermetic Tradition (Terence McKenna) [FULL].m4a
+├── Hermeticism & Alchemy (Terence McKenna).m4a
+├── Terence McKenna - Esalen Scholar In Residence, June 1989.m4a
+├── Terence McKenna & Ralph Metzner ~ Shamanism: Before And Beyond History (1988).m4a
+├── Terence McKenna & Riane Eisler ~ Man & Woman At The End Of History (1988).m4a
+└── Terence McKenna - Workshop, Esalen - December, 1994.m4a

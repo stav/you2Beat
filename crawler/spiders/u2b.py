@@ -8,6 +8,11 @@ class ExampleSpider(scrapy.Spider):
     name = "u2b"
     qty = 10
 
+    @property
+    def _qty(self):
+        if self.qty:
+            return int(self.qty)
+
     def start_requests(self):
         if hasattr(self, 'channel'):
             url = 'https://www.youtube.com/channel/{}/videos'.format(self.channel)
@@ -19,7 +24,7 @@ class ExampleSpider(scrapy.Spider):
 
     def parse(self, response):
         selstr = '#browse-items-primary > li a.yt-uix-tile-link::attr(href)'
-        for href in response.css(selstr)[:self.qty or None]:
+        for href in response.css(selstr)[:self._qty]:
             url = response.urljoin(href.extract())
             if not url:
                 raise Exception('No URL from href ({}) in {}'.format(href, response))

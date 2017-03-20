@@ -83,7 +83,7 @@ The resulting directory structure might then look like:
 Use Case 2
 ----------
 
-Download all videos as audio only from first page of YouTube channel
+Download last ten (10) videos as audio only from first page of YouTube channel
 
 $ scrapy crawl u2b  -a channel=UCse9F5zX--t-hpiUooNegZA
 
@@ -104,9 +104,9 @@ audio/
 Use Case 3
 ----------
 
-Download all videos as audio only from first page of YouTube user
+Download last six (6) videos as audio only from first page of YouTube user
 
-$ scrapy crawl u2b  -a user=TerenceMcKennaTube
+$ scrapy crawl u2b  -a user=TerenceMcKennaTube  -a qty=6
 
 The resulting directory structure might then look like:
 

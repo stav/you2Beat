@@ -7,11 +7,17 @@ import pafy
 class ExampleSpider(scrapy.Spider):
     name = "u2b"
     qty = 10
+    length = 60 * 50  # 50 min max default, 0 for no limit
 
     @property
     def _qty(self):
         if self.qty:
             return int(self.qty)
+
+    @property
+    def _length(self):
+        if self.length:
+            return int(self.length)
 
     def start_requests(self):
         if hasattr(self, 'channel'):
@@ -29,7 +35,7 @@ class ExampleSpider(scrapy.Spider):
             if not url:
                 raise Exception('No URL from href ({}) in {}'.format(href, response))
             if 'watch' not in url:
-                self.log('Bad href parsed ({})'.format(url))
+                self.logger.error('Bad href parsed ({})'.format(url))
                 continue
             try:
                 video = pafy.new(url)
@@ -37,7 +43,14 @@ class ExampleSpider(scrapy.Spider):
                 self.logger.error(e)
                 continue
 
+            if self._length and video.length > self._length:
+                self.logger.warning(
+                    'Video too long ({}), not downloading, {} > {}'.format(
+                        video.duration, video.length, self._length))
+                continue
+
             audio = video.getbestaudio(preftype="m4a")
+            # print('@@@', href.extract(), video.title, audio.filename)
             filepath = _get_filepath(video, audio)
             if os.path.exists(filepath):
                 self.logger.warning('File already exists ({})'.format(filepath))

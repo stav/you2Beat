@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'crawler.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = (
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
-    'Ubuntu Chromium/52.0.2743.116 Chrome/52.0.2743.116 Safari/537.36'
+    'U2b'
 )
 
 # Obey robots.txt rules
@@ -92,5 +92,5 @@ HTTPCACHE_ENABLED = False
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-FEED_FORMAT = 'csv'
-FEED_URI = 'feed.csv'
+# FEED_FORMAT = 'csv'
+# FEED_URI = 'feed.csv'

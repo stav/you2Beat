@@ -2,7 +2,7 @@ import scrapy
 import pafy
 
 
-class ExampleSpider(scrapy.Spider):
+class WikipediaSpider(scrapy.Spider):
     name = "wikipedia"
     byear = 1965
     eyear = 1970

@@ -4,20 +4,31 @@ import scrapy
 import pafy
 
 
-class ExampleSpider(scrapy.Spider):
+class U2bSpider(scrapy.Spider):
     name = "u2b"
-    qty = 10
-    length = 60 * 50  # 50 min max default, 0 for no limit
+
+    def __init__(self, **kwargs):
+        self.qty = 10
+        self.audio = True
+        self.video = False
+        self.length = 60 * 50  # 50 minute maximum, 0 for no limit
+        super().__init__(**kwargs)
 
     @property
     def _qty(self):
-        if self.qty:
-            return int(self.qty)
+        return int(self.qty)
 
     @property
     def _length(self):
-        if self.length:
-            return int(self.length)
+        return int(self.length)
+
+    @property
+    def _audio(self):
+        return bool(int(self.audio))
+
+    @property
+    def _video(self):
+        return bool(int(self.video))
 
     def start_requests(self):
         if hasattr(self, 'channel'):
@@ -30,6 +41,7 @@ class ExampleSpider(scrapy.Spider):
 
     def parse(self, response):
         selstr = '#browse-items-primary > li a.yt-uix-tile-link::attr(href)'
+        # selstr = 'div.yt-lockup-content a::attr(href)'
         for href in response.css(selstr)[:self._qty]:
             url = response.urljoin(href.extract())
             if not url:
@@ -49,29 +61,65 @@ class ExampleSpider(scrapy.Spider):
                         video.duration, video.length, self._length))
                 continue
 
-            audio = video.getbestaudio(preftype="m4a")
-            # print('@@@', href.extract(), video.title, audio.filename)
-            filepath = _get_filepath(video, audio)
-            if os.path.exists(filepath):
-                self.logger.warning('File already exists ({})'.format(filepath))
-            else:
-                audio.download(filepath=filepath)
-                yield dict(
-                    channel=getattr(self, 'channel', None),
-                    author=video.author,
-                    title=video.title,
-                    date=video.published,
-                    path=filepath,
-                    user=getattr(self, 'user', None),
-                    url=url,
-                )
+            paths = []
+
+            if self._audio:
+                path = self.download_audio(video)
+                paths.append(path)
+
+            if self._video:
+                path = self.download_video(video)
+                paths.append(path)
+
+            yield dict(
+                channel=getattr(self, 'channel', None),
+                author=video.author,
+                title=video.title,
+                date=video.published,
+                path=paths,
+                user=getattr(self, 'user', None),
+                url=url,
+            )
+
+    def download_audio(self, video):
+        audio = video.getbestaudio(preftype="m4a")
+        filepath = _get_filepath_audio(video, audio.filename)
+        if os.path.exists(filepath):
+            self.logger.warning('File already exists ({})'.format(filepath))
+        else:
+            audio.download(filepath=filepath)
+
+        return filepath
+
+    def download_video(self, video):
+        stream = video.getbest(preftype="mp4")
+        filepath = _get_filepath_video(video, stream.filename)
+        if os.path.exists(filepath):
+            self.logger.warning('File already exists ({})'.format(filepath))
+        else:
+            stream.download(filepath=filepath)
+
+        return filepath
 
 
-def _get_filepath(video, audio):
+def _get_filename(video, filename):
     date = video.published.partition(' ')[0]
     white_chars = string.ascii_letters + string.digits + ' ' + '_' + '-' + '.'
-    blackname = '{}_{}_{}'.format(video.author, date, audio.filename)
+    blackname = '{}_{}_{}'.format(video.author, date, filename)
     whitename = ''.join(c for c in blackname if c in (white_chars)).replace(' ', '_')
-    filepath = os.path.join('audio', whitename)
+
+    return whitename
+
+
+def _get_filepath_audio(video, filename):
+    filename = _get_filename(video, filename)
+    filepath = os.path.join('audio', filename)
+
+    return filepath
+
+
+def _get_filepath_video(video, filename):
+    filename = _get_filename(video, filename)
+    filepath = os.path.join('video', filename)
 
     return filepath
